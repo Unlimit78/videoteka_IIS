@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Videoteka</title>
+	<meta name="description" content="A photography-inspired website layout with an expanding stack slider and a background image tilt effect" />
+	<meta name="keywords" content="photography, template, layout, effect, expand, image stack, animation, flickity, tilt" />
+	<meta name="author" content="Codrops" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/flickity.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+	<script src="{% static 'js/modernizr.custom.js' %}"></script>
+    <style>
+        form {
+
+            display:flex;
+            align-items: flex-end;
+
+            flex-direction: column;
+
+        }
+       label{
+           padding:10px;
+           flex:2;
+           fon-size: 25px;
+       }
+        input{
+            background: #212121;
+
+            border:1px solid red;
+            border-radius: 5%;
+            padding:10px;
+            color:white;
+            flex:1
+        }
+    </style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="hero">
+			<div class="hero__back hero__back--static"></div>
+			<div class="hero__back hero__back--mover"></div>
+			<div class="hero__front"></div>
+		</div>
+        {% block header %}
+		<header class="codrops-header">
+			<div class="codrops-links">
+				<a class="codrops-icon codrops-icon--prev" href="http://tympanus.net/Development/InteractiveColoringConcept/" title="Previous Demo"><span>Previous Demo</span></a>
+				<a class="codrops-icon codrops-icon--drop" href="http://tympanus.net/codrops/2015/05/06/photography-website-concept/" title="Back to the article"><span>Back to the Codrops article</span></a>
+			</div>
+			<h1 class="codrops-title">Taras Iliashchuk <span>Videoteka</span></h1>
+			<nav class="menu">
+
+
+				<a class="menu__item menu__item--current" href="{% url 'index' %}"><span>Video</span></a>
+
+                <a class="menu__item" href="{% url 'cart' %}"><span>Cart</span></a>
+                {% if user.lvl == 'worker' %}
+                <a class="menu__item" href="{% url 'new' %}"><span>Add video</span></a>
+                {% endif %}
+                {% if user.is_authenticated %}
+				    <a class="menu__item" href="{% url 'logout' %}"><span>Logout</span></a>
+                {% endif %}
+
+			</nav>
+		</header>
+        {% endblock header %}
+        {% block  content%}
+
+        {% endblock content %}
+		<!-- /stacks -->
+
+	</div>
+
+	<script src="{% static 'js/flickity.pkgd.min.js' %}"></script>
+	<script src="{% static 'js/smoothscroll.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
+

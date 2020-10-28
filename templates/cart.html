@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="stack-slider">
+			<div class="stacks-wrapper">
+
+				<div class="stack">
+					<h2 class="stack-title"><a href="#" data-text="Cart"><span>Cart</span></a></h2>
+                    {% for v in cart %}
+
+					<div class="item">
+						<div class="item__content">
+							<img src="{{ v.image.url }}" alt="" />
+							<h3 class="item__title">{{ v.name }} <span class="item__date">{{ v.date_of_production }}</span></h3>
+							<div class="item__details">
+								<ul>
+									<li><i class="icon icon-camera"></i><span>Price : ${{ v.price }}</span></li>
+									<li><i class="icon icon-focal_length"></i><span>Volume : {{ v.volume}}</span></li>
+									<li><i class="icon icon-aperture"></i><span>Genre : {{ v.genre }}</span></li>
+									<li><i class="icon icon-exposure_time"></i><span>Duration : {{ v.length_of_film }}</span></li>
+									<li><i class="icon icon-iso"></i><span>Type : {{ v.type }}</span></li>
+								</ul>
+							</div>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ v.pk }}" name="pk" id="pk">
+
+                                {% if v in user.cart.all %}
+                                <input type="submit" value="Remove from cart" style="color:red;background: #212121;border:1px solid white; padding: 10px;">
+                                    {% else %}
+                                    <input type="submit" value="Add to cart" style="color:red;background: #212121;border:1px solid white; padding: 10px;">
+                                {% endif %}
+
+                            </form>
+
+
+						</div>
+					</div>
+
+                        {% endfor %}
+                    <h2 class="stack-title"> Total price : ${{ sum }}</h2>
+                    <p><a href="{% url 'process_payment' %}" style="color:red;background: #212121;border:1px solid white; padding: 10px;text-decoration: none"> Buy </a></p>
+                    <br>
+				</div>
+                <div class="stack">
+                    <h2 class="stack-title"><a href="#" data-text=""><span></span></a></h2>
+                </div>
+
+			</div>
+			<!-- /stacks-wrapper -->
+		</div>
+{% endblock content %}

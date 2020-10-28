@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="stack-slider">
+			<div class="stacks-wrapper">
+
+				<div class="stack">
+					<h2 class="stack-title"><a href="#" data-text="Add new video"><span>Add new video</span></a></h2>
+
+                    <div class="item">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input type="submit" value="Add" style="color:red;background: #212121;border:1px solid white; padding: 10px;">
+                        </form>
+                    </div>
+
+				</div>
+
+
+			</div>
+			<!-- /stacks-wrapper -->
+		</div>
+{% endblock content %}

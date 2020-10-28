@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Make Payment{% endblock %}
+
+{% block content %}
+    <div class="stack-slider">
+			<div class="stacks-wrapper">
+
+				<div class="stack">
+					<h2 class="stack-title"><a href="#" data-text=""><span>PayPal payment process</span></a></h2>
+
+                    <div class="item">
+                        <h1>Pay with PayPal</h1>
+                        {{ form.render }}
+                    </div>
+
+				</div>
+
+
+			</div>
+			<!-- /stacks-wrapper -->
+		</div>
+{% endblock %}
